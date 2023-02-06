@@ -13,9 +13,13 @@ pipeline {
         }
         stage('Deploy') {
             steps {
+              bat 'docker build -t springbootjenkins:v1 .'
+                  }
+                   }
+        stage('Push to Docker Hub') {
+            steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub', usernameVariable: 'DOCKER_HUB_USERNAME', passwordVariable: 'DOCKER_HUB_PASSWORD')]) {
                     bat 'docker login -u %DOCKER_HUB_USERNAME% -p %DOCKER_HUB_PASSWORD%'
-                    bat 'docker build -t springbootjenkins:v1 .'
                     bat 'docker tag springbootjenkins:v1 aitadioptoure/springbootjenkins:v1'
                     bat 'docker push aitadioptoure/springbootjenkins:v1'
                 }
