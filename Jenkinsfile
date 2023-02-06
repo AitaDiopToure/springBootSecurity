@@ -11,5 +11,10 @@ pipeline {
  bat "C:/apache-maven-3.8.6/bin/mvn test"
  }
  }
+  stage('Deploy') {
+ steps {
+ bat 'docker build -t springbootjenkins:v1 .'
+ }
+ }
  }
 }
