@@ -13,7 +13,7 @@ pipeline {
  }
   stage('Deploy') {
  steps {
- bat 'docker build -t springbootjenkins:v1 .'
+ bat "docker build -t springbootjenkins:v1 ."
  }
  }
  }
